@@ -19,7 +19,7 @@ export default function HeroSlider({ posts }: { posts: HeroPost[] }) {
 
   const lockFor2s = useCallback(() => {
     setLocked(true);
-    const t = setTimeout(() => setLocked(false), 2000);
+    const t = setTimeout(() => setLocked(false), 1000);
     return () => clearTimeout(t);
   }, []);
 
@@ -41,7 +41,7 @@ export default function HeroSlider({ posts }: { posts: HeroPost[] }) {
     <div className="relative w-full h-96 rounded-lg overflow-hidden">
       {/* Slides wrapper with translate animation */}
       <div
-        className="absolute inset-0 flex transition-transform duration-700 ease-out"
+        className="absolute inset-0 flex transition-transform duration-1000 ease-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {items.map((item) => (
@@ -59,7 +59,7 @@ export default function HeroSlider({ posts }: { posts: HeroPost[] }) {
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/60 to-transparent" />
             <div className="absolute inset-0 flex items-center justify-center px-6">
-              <h2 className="text-center text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
+              <h2 className="text-center text-xl md:text-3xl lg:text-4xl font-bold leading-tight">
                 {item.title}
               </h2>
             </div>
