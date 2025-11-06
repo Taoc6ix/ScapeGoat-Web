@@ -102,24 +102,6 @@ export default async function PostDetailPage(
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="border-b border-black">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold uppercase">SCAPEGOAT</h1>
-            <nav className="hidden font-semibold md:flex gap-8 text-m">
-              <h2><Link href="/" className="hover:text-gray-400">Home</Link></h2>
-              <h2><Link href="/" className="hover:text-gray-400">Latest</Link></h2>
-              <h2><Link href="/" className="hover:text-gray-400">Tags</Link></h2>
-              <h2><Link href="/" className="hover:text-gray-400">Popular</Link></h2>
-              <h2><Link href="/" className="hover:text-gray-400">Categories</Link></h2>
-              <h2><Link href="/" className="hover:text-gray-400">Support</Link></h2>
-              <h2><Link href="/" className="hover:text-gray-400">Contact Us</Link></h2>
-            </nav>
-          </div>
-        </div>
-      </header>
-
       {/* Hero */}
       <section className="relative w-full h-[350px] md:h-[750px] overflow-hidden">
         <Image
@@ -172,7 +154,7 @@ export default async function PostDetailPage(
 
         {/* Sidebar */}
         <div className="lg:col-span-1 sticky top-4">
-          <h2 className="text-xl font-bold uppercase mb-6 pb-3 border-b border-gray-800">Latest Posts</h2>
+          <h2 className="text-xl font-bold uppercase mb-2 pb-3">Latest Posts</h2>
           <div className="space-y-6">
             {latestPosts.map((p) => (
               <Link key={p.id} href={`/post/${p.slug}`} className="block group">
@@ -189,42 +171,6 @@ export default async function PostDetailPage(
         </div>
 
       </div>
-
-      {/* Footer */}
-      <footer className="border-t border-gray-800 mt-12">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold uppercase mb-4">SCAPEGOAT</h3>
-              <h4 className="text-sm text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                
-              </h4>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold uppercase mb-4">CATEGORIES</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <h4><Link href="/">JILBAB</Link></h4>
-                <h4><Link href="/">KOLPRI</Link></h4>
-                <h4><Link href="/">MEDIA EXC</Link></h4>
-                <h4><Link href="/">OF</Link></h4>
-                <h4><Link href="/">TALENT</Link></h4>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <h4>© SCAPEGOAT. ALL RIGHTS RESERVED.</h4>
-            <h4>SUPPORTED BY VERENIUS</h4>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
