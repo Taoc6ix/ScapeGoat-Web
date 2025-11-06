@@ -10,7 +10,6 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        // Debug: cek semua post dulu (temporary)
         $allPosts = Post::all();
         \Log::info('All posts count:', ['count' => $allPosts->count()]);
         \Log::info('All posts:', $allPosts->map(function($p) {
@@ -23,7 +22,6 @@ class PostController extends Controller
             ];
         })->toArray());
 
-        // Query published posts
         $query = Post::published()
             ->with([
                 'images' => fn($q) => $q->orderBy('order')->limit(3),
@@ -33,7 +31,6 @@ class PostController extends Controller
 
         \Log::info('Published posts count:', ['count' => $query->count()]);
 
-        // Filter featured/popular jika diperlukan
         if ($request->has('featured')) {
             $query->featured();
         }
