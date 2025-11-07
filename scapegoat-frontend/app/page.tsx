@@ -97,6 +97,7 @@ export default async function Home() {
                       src={post.thumbnail_url}
                       alt={post.title}
                       fill
+                      unoptimized
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="623px"
                     />
@@ -152,6 +153,7 @@ export default async function Home() {
                       src={post.thumbnail_url}
                       alt={post.title}
                       fill
+                      unoptimized
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="623px"
                     />

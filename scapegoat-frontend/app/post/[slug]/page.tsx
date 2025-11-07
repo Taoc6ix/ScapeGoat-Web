@@ -110,7 +110,6 @@ export default async function PostDetailPage(
             src={post.full_image_url || post.thumbnail_url}
             alt={post.title}
             fill
-            unoptimized
             sizes="100vw"
             className="object-cover opacity-40"
             priority
@@ -135,7 +134,7 @@ export default async function PostDetailPage(
               </div>
             </div>
             
-            <h2 className="text-xs font-bold text-center uppercase text-white">SCROLL KEBAWAH BUAT LINK</h2>
+            <h2 className="text-xs font-bold text-center uppercase text-white">SCROLL KEBAWAH BIAR DAPAT LINK</h2>
 
             <div className="grid grid-cols-1 gap-4">
               <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-center uppercase text-white">PREVIEW</h2>
@@ -154,7 +153,6 @@ export default async function PostDetailPage(
                     src={img.full_image_url || img.thumbnail_url}
                     alt={`${post.title} - ${i + 1}`}
                     fill
-                    unoptimized
                     sizes="(max-width: 768px) 50vw,   (max-width: 1024px) 33vw, 25vw"
                     className="object-cover hover:scale-105 transition-transform duration-500"
                   />
@@ -186,7 +184,6 @@ export default async function PostDetailPage(
                       src={p.thumbnail_url}
                       alt={p.title}
                       fill
-                      unoptimized
                       sizes="100vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
@@ -199,7 +196,6 @@ export default async function PostDetailPage(
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </LoadingScreen>
