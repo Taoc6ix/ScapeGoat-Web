@@ -147,7 +147,7 @@ export default async function PostDetailPage(
                   href={img.external_view_url}
                   target="_blank"
                   className="block relative overflow-hidden rounded-lg"
-                  style={{ aspectRatio: "1 / 1" }}
+                  style={{ aspectRatio: "1/1" }}
                 >
                   <Image
                     src={img.full_image_url || img.thumbnail_url}

@@ -17,29 +17,29 @@ export default function HeroSlider({ posts }: { posts: HeroPost[] }) {
   const [index, setIndex] = useState(0);
   const [locked, setLocked] = useState(false);
 
-  const lockFor2s = useCallback(() => {
+  const lockFor5mill = useCallback(() => {
     setLocked(true);
-    const t = setTimeout(() => setLocked(false), 1000);
+    const t = setTimeout(() => setLocked(false), 500);
     return () => clearTimeout(t);
   }, []);
 
   const prev = useCallback(() => {
     if (locked || items.length <= 1) return;
-    lockFor2s();
+    lockFor5mill();
     setIndex((i) => (i - 1 + items.length) % items.length);
-  }, [items.length, locked, lockFor2s]);
+  }, [items.length, locked, lockFor5mill]);
 
   const next = useCallback(() => {
     if (locked || items.length <= 1) return;
-    lockFor2s();
+    lockFor5mill();
     setIndex((i) => (i + 1) % items.length);
-  }, [items.length, locked, lockFor2s]);
+  }, [items.length, locked, lockFor5mill]);
 
   useEffect(() => {
     if (items.length <= 1) return;
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % items.length);
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [items.length]);
