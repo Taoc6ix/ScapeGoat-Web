@@ -19,7 +19,7 @@ export default function Header() {
             <h2><Link href="/" className="hover:text-gray-400">Latest</Link></h2>
             {/* <h2><Link href="/" className="hover:text-gray-400">Tags</Link></h2> */}
             <h2><Link href="/" className="hover:text-gray-400">Popular</Link></h2>
-            <h2><Link href="/" className="hover:text-gray-400">Categories</Link></h2>
+            <h2><Link href="/" className="hover:text-gray-400">Category</Link></h2>
             <h2><Link href="/" className="hover:text-gray-400">Support</Link></h2>
             {/* <h2><Link href="/" className="hover:text-gray-400">Contact Us</Link></h2> */}
         </nav>
@@ -39,11 +39,11 @@ export default function Header() {
         <div className="md:hidden flex flex-col items-center bg-black border-t border-gray-900 px-4 py-4 space-y-4">
           <h2><Link href="/" className="hover:text-gray-400">Home</Link></h2>
             <h2><Link href="/" className="hover:text-gray-400">Latest</Link></h2>
-            <h2><Link href="/" className="hover:text-gray-400">Tags</Link></h2>
+            {/* <h2><Link href="/" className="hover:text-gray-400">Tags</Link></h2> */}
             <h2><Link href="/" className="hover:text-gray-400">Popular</Link></h2>
-            <h2><Link href="/" className="hover:text-gray-400">Categories</Link></h2>
+            <h2><Link href="/" className="hover:text-gray-400">Category</Link></h2>
             <h2><Link href="/" className="hover:text-gray-400">Support</Link></h2>
-            <h2><Link href="/" className="hover:text-gray-400">Contact Us</Link></h2>
+            {/* <h2><Link href="/" className="hover:text-gray-400">Contact Us</Link></h2> */}
         </div>
       )}
     </header>

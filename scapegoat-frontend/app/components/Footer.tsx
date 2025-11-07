@@ -20,7 +20,7 @@ export default function Footer() {
               </h4>
             </div>
             <div>
-              <h4 className="text-lg font-semibold uppercase mb-4">CATEGORIES</h4>
+              <h4 className="text-lg font-semibold uppercase mb-4">CATEGORY</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <h4><Link href="/">JILBAB</Link></h4>
                 <h4><Link href="/">KOLPRI</Link></h4>

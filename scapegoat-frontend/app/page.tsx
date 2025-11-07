@@ -74,9 +74,9 @@ export default async function Home() {
         <section className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
             <h2 className="text-xl font-bold uppercase">LATEST POSTS</h2>
-            <Link href="/latest" className="text-sm hover:text-gray-400 transition-colors">
+            <h3><Link href="/latest" className="text-sm hover:text-gray-400 transition-colors">
               SEE MORE →
-            </Link>
+            </Link></h3>
           </div>
 
           {posts.length === 0 ? (
@@ -135,9 +135,10 @@ export default async function Home() {
         <section className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
             <h2 className="text-xl font-bold uppercase">POPULAR POSTS</h2>
-            <Link href="/popular" className="text-sm hover:text-gray-400 transition-colors">
+            <h3><Link href="/popular" className="text-sm hover:text-gray-400 transition-colors">
               SEE MORE →
             </Link>
+            </h3>
           </div>
 
           {popularPosts.length === 0 ? (
