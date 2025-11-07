@@ -1,7 +1,7 @@
-import Image from "next/image";
+import SmartImage from "./components/SmartImage";
 import Link from "next/link";
 import HeroSlider from "./components/HeroSlider";
-import LoadingScreen from "@/app/components/LoadingScreen";
+import LoadingScreen from "./components/LoadingScreen";
 
 type Post = {
   id: number;
@@ -55,7 +55,7 @@ async function getPosts(): Promise<{ data: Post[] }> {
 
 export default async function Home() {
   const { data: posts } = await getPosts();
-  const popularPosts = posts.filter((post) => post.is_popular === true);
+  const popularPosts = posts.filter((post) => post.is_popular === true || post.is_popular === 1);
   const featuredPosts = posts.filter(
   (post) => post.is_featured === true || post.is_featured == 1).slice(0, 3);
 
@@ -74,7 +74,9 @@ export default async function Home() {
         <section className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
             <h2 className="text-xl font-bold uppercase">LATEST POSTS</h2>
-            <a href="/" className="text-sm hover:text-gray-400">SEE MORE →</a>
+            <Link href="/latest" className="text-sm hover:text-gray-400 transition-colors">
+              SEE MORE →
+            </Link>
           </div>
 
           {posts.length === 0 ? (
@@ -86,14 +88,14 @@ export default async function Home() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post) => (
+              {posts.slice(0, 9).map((post) => (
                 <Link 
                   key={post.id} 
                   href={`/post/${post.slug}`}
                   className="block group"
                 >
                   <div className="relative w-full rounded-lg overflow-hidden mb-3" style={{ aspectRatio: '623 / 416' }}>
-                    <Image
+                    <SmartImage
                       src={post.thumbnail_url}
                       alt={post.title}
                       fill
@@ -133,13 +135,16 @@ export default async function Home() {
         <section className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
             <h2 className="text-xl font-bold uppercase">POPULAR POSTS</h2>
+            <Link href="/popular" className="text-sm hover:text-gray-400 transition-colors">
+              SEE MORE →
+            </Link>
           </div>
 
           {popularPosts.length === 0 ? (
             <p className="text-gray-500 text-sm">Belum ada postingan popular.</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {popularPosts.map((post: Post) => (
+              {popularPosts.slice(0, 9).map((post: Post) => (
                 <Link
                   key={post.id}
                   href={`/post/${post.slug}`}
@@ -149,7 +154,7 @@ export default async function Home() {
                     className="relative w-full rounded-lg overflow-hidden mb-3"
                     style={{ aspectRatio: "623 / 416" }}
                   >
-                    <Image
+                    <SmartImage
                       src={post.thumbnail_url}
                       alt={post.title}
                       fill

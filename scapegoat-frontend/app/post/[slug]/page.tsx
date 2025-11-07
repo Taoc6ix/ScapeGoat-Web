@@ -1,7 +1,7 @@
-import Image from "next/image";
+import SmartImage from "../../components/SmartImage";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import LoadingScreen from "@/app/components/LoadingScreen";
+import LoadingScreen from "../../components/LoadingScreen";
 
 // ===== Types =====
 type PostDetail = {
@@ -106,13 +106,13 @@ export default async function PostDetailPage(
       <div className="min-h-screen bg-black text-white">
         {/* Hero */}
         <section className="relative w-full h-[350px] md:h-[750px] overflow-hidden">
-          <Image
+          <SmartImage
             src={post.full_image_url || post.thumbnail_url}
             alt={post.title}
             fill
+            loading="eager"
             sizes="100vw"
             className="object-cover opacity-40"
-            priority
           />
           <div className="absolute inset-0 flex items-center justify-center flex-col text-center px-4">
             <h1 className="text-xl md:text-3xl font-bold mb-4 leading-tight">{post.title}</h1>
@@ -149,10 +149,11 @@ export default async function PostDetailPage(
                   className="block relative overflow-hidden rounded-lg"
                   style={{ aspectRatio: "1/1" }}
                 >
-                  <Image
+                  <SmartImage
                     src={img.full_image_url || img.thumbnail_url}
                     alt={`${post.title} - ${i + 1}`}
                     fill
+                    loading="eager"
                     sizes="(max-width: 768px) 50vw,   (max-width: 1024px) 33vw, 25vw"
                     className="object-cover hover:scale-105 transition-transform duration-500"
                   />
@@ -180,10 +181,11 @@ export default async function PostDetailPage(
               {latestPosts.map((p) => (
                 <Link key={p.id} href={`/post/${p.slug}`} className="block group">
                   <div className="relative w-full rounded-lg overflow-hidden mb-3 bg-gray-900" style={{ aspectRatio: "16/10" }}>
-                    <Image
+                    <SmartImage
                       src={p.thumbnail_url}
                       alt={p.title}
                       fill
+                      loading="eager"
                       sizes="100vw"
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />

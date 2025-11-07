@@ -64,6 +64,7 @@ export default function HeroSlider({ posts }: { posts: HeroPost[] }) {
               src={item.full_image_url || item.thumbnail_url}
               alt={item.title}
               fill
+              loading="eager"
               className="object-cover"
               priority
             />

@@ -28,3 +28,12 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading), sans-serif;
 }
+
+.lazy-image {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
