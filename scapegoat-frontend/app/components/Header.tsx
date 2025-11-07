@@ -17,11 +17,11 @@ export default function Header() {
         <nav className="hidden md:flex gap-8 text-sm font-semibold">
             <h2><Link href="/" className="hover:text-gray-400">Home</Link></h2>
             <h2><Link href="/" className="hover:text-gray-400">Latest</Link></h2>
-            <h2><Link href="/" className="hover:text-gray-400">Tags</Link></h2>
+            {/* <h2><Link href="/" className="hover:text-gray-400">Tags</Link></h2> */}
             <h2><Link href="/" className="hover:text-gray-400">Popular</Link></h2>
             <h2><Link href="/" className="hover:text-gray-400">Categories</Link></h2>
             <h2><Link href="/" className="hover:text-gray-400">Support</Link></h2>
-            <h2><Link href="/" className="hover:text-gray-400">Contact Us</Link></h2>
+            {/* <h2><Link href="/" className="hover:text-gray-400">Contact Us</Link></h2> */}
         </nav>
 
         {/* Burger Button */}

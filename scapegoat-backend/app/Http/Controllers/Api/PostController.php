@@ -49,6 +49,8 @@ class PostController extends Controller
                     'thumbnail_url' => $post->thumbnail_url,
                     'full_image_url' => $post->full_image_url,
                     'external_view_url' => $post->external_view_url,
+                    'is_featured' => (bool) $post->is_featured,
+                    'is_popular' => (bool) $post->is_popular,
                     'categories' => $post->categories->map(fn($cat) => [
                         'name' => $cat->name,
                         'slug' => $cat->slug,
@@ -78,7 +80,7 @@ class PostController extends Controller
         return response()->json([
             'data' => [
                 'id' => $post->id,
-                'title' => $post->title,
+                'title' => $post->title,    
                 'slug' => $post->slug,
                 'thumbnail_url' => $post->thumbnail_url,
                 'full_image_url' => $post->full_image_url,

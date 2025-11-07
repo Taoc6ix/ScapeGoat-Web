@@ -12,13 +12,13 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('thumbnail_url'); // URL thumbnail dari imagebam
-            $table->string('external_view_url'); // URL viewer imagebam
-            $table->string('size_info')->nullable(); // informasi ukuran
-            $table->string('external_link')->nullable(); // link download eksternal
+            $table->string('thumbnail_url'); 
+            $table->string('external_view_url');
+            $table->string('size_info')->nullable();
+            $table->string('external_link')->nullable(); 
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_popular')->default(false);
-            $table->string('status')->default('draft'); // draft, published
+            $table->string('status')->default('draft'); 
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             

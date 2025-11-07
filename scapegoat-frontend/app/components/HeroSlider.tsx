@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useEffect } from "react";
 
 type HeroPost = {
   id: number;
@@ -34,6 +34,16 @@ export default function HeroSlider({ posts }: { posts: HeroPost[] }) {
     lockFor2s();
     setIndex((i) => (i + 1) % items.length);
   }, [items.length, locked, lockFor2s]);
+
+  useEffect(() => {
+    if (items.length <= 1) return;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % items.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [items.length]);
+
 
   if (items.length === 0) return null;
 

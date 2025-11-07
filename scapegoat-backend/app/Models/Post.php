@@ -61,11 +61,11 @@ class Post extends Model
 
     public function scopeFeatured($query)
     {
-        return $query->where('is_featured', true);
+        return $query->where('is_featured', 1);
     }
 
     public function scopePopular($query)
     {
-        return $query->where('is_popular', true);
+        return $query->where('is_popular', 1);
     }
 }

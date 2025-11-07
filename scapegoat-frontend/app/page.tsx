@@ -11,6 +11,8 @@ type Post = {
   external_view_url: string;
   categories?: Array<{ name: string; slug: string }>;
   published_at?: string;
+  is_popular: boolean | number | string;
+  is_featured: boolean | number | string;
 };
 
 async function getPosts(): Promise<{ data: Post[] }> {
@@ -52,13 +54,17 @@ async function getPosts(): Promise<{ data: Post[] }> {
 
 export default async function Home() {
   const { data: posts } = await getPosts();
+  const popularPosts = posts.filter((post) => post.is_popular === true);
+  const featuredPosts = posts.filter(
+  (post) => post.is_featured === true || post.is_featured == 1).slice(0, 3);
+
 
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      {posts.length > 0 && (
+      {featuredPosts.length > 0 && (
         <section className="container mx-auto px-4 py-8">
-          <HeroSlider posts={posts} />
+          <HeroSlider posts={featuredPosts} />
         </section>
       )}
 
@@ -125,40 +131,57 @@ export default async function Home() {
         <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
           <h2 className="text-xl font-bold uppercase">POPULAR POSTS</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.slice(0, 3).map((post) => (
-            <Link 
-              key={post.id} 
-              href={`/post/${post.slug}`}
-              className="block group"
-            >
-              <div className="relative w-full rounded-lg overflow-hidden mb-3" style={{ aspectRatio: '623 / 416' }}>
-                <Image
-                  src={post.thumbnail_url}
-                  alt={post.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="623px"
-                />
-              </div>
-              <div className="mb-2">
-                <span className="text-xs uppercase text-gray-400">COSPLAY</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
-                {post.title}
-              </h3>
-              <p className="text-xs text-gray-500">
-                {post.published_at 
-                  ? new Date(post.published_at).toLocaleDateString('en-US', { 
-                      month: 'short', 
-                      day: 'numeric', 
-                      year: 'numeric' 
-                    }).toUpperCase()
-                  : 'N/A'}
-              </p>
-            </Link>
-          ))}
-        </div>
+
+        {popularPosts.length === 0 ? (
+          <p className="text-gray-500 text-sm">Belum ada postingan popular.</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {popularPosts.map((post: Post) => (
+              <Link
+                key={post.id}
+                href={`/post/${post.slug}`}
+                className="block group"
+              >
+                <div
+                  className="relative w-full rounded-lg overflow-hidden mb-3"
+                  style={{ aspectRatio: "623 / 416" }}
+                >
+                  <Image
+                    src={post.thumbnail_url}
+                    alt={post.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="623px"
+                  />
+                </div>
+
+                <div className="mb-2">
+                  {post.categories && post.categories.length > 0 ? (
+                    <span className="text-xs font-bold uppercase text-gray-400">
+                      {post.categories.map((c) => c.name).join(", ")}
+                    </span>
+                  ) : (
+                    <span className="text-xs uppercase text-gray-400">UNCATEGORIZED</span>
+                  )}
+                </div>
+
+                <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
+                  {post.title}
+                </h3>
+
+                <p className="text-xs text-gray-500">
+                  {post.published_at
+                    ? new Date(post.published_at).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      }).toUpperCase()
+                    : "N/A"}
+                </p>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );
