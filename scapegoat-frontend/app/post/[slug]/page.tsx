@@ -131,15 +131,17 @@ export default async function PostDetailPage(
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
               <h3 className="text-xs font-bold mb-3 uppercase text-gray-400">FILE SIZE</h3>
-              <p className="text-2xl font-bold">{post.size_info || "N/A"}</p>
+              <h4 className="text-xl font-bold">{post.size_info || "N/A"}</h4>
             </div>
 
             <div className="bg-gray-900 rounded-lg p-6 border border-gray-800">
-              <h3 className="text-xs font-bold mb-3 uppercase text-gray-400">DOWNLOAD</h3>
+              <h3 className="text-xs font-bold mb-3 uppercase text-gray-400">DOWNLOAD TANPA SHORTLINK</h3>
               {post.external_link ? (
-                <a href={post.external_link} target="_blank" className="text-blue-300 hover:text-blue-200 underline font-bold">
-                  DOWNLOAD LINK
-                </a>
+                <h3>
+                  <a href={post.external_link} target="_blank" className="text-blue-300 hover:text-blue-200 underline font-bold">
+                  DISINI
+                  </a>
+                </h3>
               ) : (
                 <p className="text-gray-500 font-semibold">No link available</p>
               )}
@@ -150,19 +152,28 @@ export default async function PostDetailPage(
           <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-center uppercase text-white">PREVIEW</h2>
           </div>
 
-          {allImages.map((img, i) => (
-            <a key={i} href={img.external_view_url} target="_blank" className="block relative overflow-hidden rounded-lg" style={{ aspectRatio: "16 / 9" }}>
-              <Image
-                src={img.full_image_url || img.thumbnail_url}
-                alt={`${post.title} - ${i + 1}`}
-                fill
-                unoptimized
-                sizes="100vw"
-                className="object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </a>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {allImages.map((img, i) => (
+              <a
+                key={i}
+                href={img.external_view_url}
+                target="_blank"
+                className="block relative overflow-hidden rounded-lg"
+                style={{ aspectRatio: "1 / 1" }}
+              >
+                <Image
+                  src={img.full_image_url || img.thumbnail_url}
+                  alt={`${post.title} - ${i + 1}`}
+                  fill
+                  unoptimized
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </a>
+            ))}
+          </div>
+        </div>  
+
 
         {/* Sidebar */}
         <div className="lg:col-span-1 sticky top-4">
@@ -170,7 +181,7 @@ export default async function PostDetailPage(
           <div className="space-y-6">
             {latestPosts.map((p) => (
               <Link key={p.id} href={`/post/${p.slug}`} className="block group">
-                <div className="relative w-full rounded-lg overflow-hidden mb-3 bg-gray-900" style={{ aspectRatio: "1/1" }}>
+                <div className="relative w-full rounded-lg overflow-hidden mb-3 bg-gray-900" style={{ aspectRatio: "16/10" }}>
                   <Image
                     src={p.thumbnail_url}
                     alt={p.title}
