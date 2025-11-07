@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "./components/HeroSlider";
+import LoadingScreen from "@/app/components/LoadingScreen";
 
 type Post = {
   id: number;
@@ -60,129 +61,131 @@ export default async function Home() {
 
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      {featuredPosts.length > 0 && (
+    <LoadingScreen>
+      <div className="min-h-screen bg-black text-white">
+        {/* Hero Section */}
+        {featuredPosts.length > 0 && (
+          <section className="container mx-auto px-4 py-8">
+            <HeroSlider posts={featuredPosts} />
+          </section>
+        )}
+
+        {/* Latest Posts Section */}
         <section className="container mx-auto px-4 py-8">
-          <HeroSlider posts={featuredPosts} />
-        </section>
-      )}
-
-      {/* Latest Posts Section */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
-          <h2 className="text-xl font-bold uppercase">LATEST POSTS</h2>
-          <a href="/" className="text-sm hover:text-gray-400">SEE MORE →</a>
-        </div>
-
-        {posts.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-400">Kok kosong min?</p>
-            <p className="text-xs text-gray-600 mt-2">
-              Sabar lagi maintance ya...
-            </p>
+          <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
+            <h2 className="text-xl font-bold uppercase">LATEST POSTS</h2>
+            <a href="/" className="text-sm hover:text-gray-400">SEE MORE →</a>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {posts.map((post) => (
-              <Link 
-                key={post.id} 
-                href={`/post/${post.slug}`}
-                className="block group"
-              >
-                <div className="relative w-full rounded-lg overflow-hidden mb-3" style={{ aspectRatio: '623 / 416' }}>
-                  <Image
-                    src={post.thumbnail_url}
-                    alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="623px"
-                  />
-                </div>
-                <div className="mb-2">
-                  {post.categories && post.categories.length > 0 ? (
-                    <span className="text-sm font-bold uppercase text-gray-400">
-                      {post.categories.map((c) => c.name).join(', ')}
-                    </span>
-                  ) : (
-                    <span className="text-s uppercase text-gray-400">UNCATEGORIZED</span>
-                  )}
-                </div>
-                <h3 className="text-lg font-extrabold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-sm font-bold text-gray-500">
-                  {post.published_at 
-                    ? new Date(post.published_at).toLocaleDateString('en-US', { 
-                        month: 'short', 
-                        day: 'numeric', 
-                        year: 'numeric' 
-                      }).toUpperCase()
-                    : 'N/A'}
-                </p>
-              </Link>
-            ))}
-          </div>
-        )}
-      </section>
 
-      {/* Popular Posts Section */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
-          <h2 className="text-xl font-bold uppercase">POPULAR POSTS</h2>
-        </div>
-
-        {popularPosts.length === 0 ? (
-          <p className="text-gray-500 text-sm">Belum ada postingan popular.</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularPosts.map((post: Post) => (
-              <Link
-                key={post.id}
-                href={`/post/${post.slug}`}
-                className="block group"
-              >
-                <div
-                  className="relative w-full rounded-lg overflow-hidden mb-3"
-                  style={{ aspectRatio: "623 / 416" }}
+          {posts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-400">Kok kosong min?</p>
+              <p className="text-xs text-gray-600 mt-2">
+                Sabar lagi maintance ya...
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post) => (
+                <Link 
+                  key={post.id} 
+                  href={`/post/${post.slug}`}
+                  className="block group"
                 >
-                  <Image
-                    src={post.thumbnail_url}
-                    alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="623px"
-                  />
-                </div>
+                  <div className="relative w-full rounded-lg overflow-hidden mb-3" style={{ aspectRatio: '623 / 416' }}>
+                    <Image
+                      src={post.thumbnail_url}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="623px"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    {post.categories && post.categories.length > 0 ? (
+                      <span className="text-sm font-bold uppercase text-gray-400">
+                        {post.categories.map((c) => c.name).join(', ')}
+                      </span>
+                    ) : (
+                      <span className="text-s uppercase text-gray-400">UNCATEGORIZED</span>
+                    )}
+                  </div>
+                  <h3 className="text-lg font-extrabold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm font-bold text-gray-500">
+                    {post.published_at 
+                      ? new Date(post.published_at).toLocaleDateString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric', 
+                          year: 'numeric' 
+                        }).toUpperCase()
+                      : 'N/A'}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
 
-                <div className="mb-2">
-                  {post.categories && post.categories.length > 0 ? (
-                    <span className="text-xs font-bold uppercase text-gray-400">
-                      {post.categories.map((c) => c.name).join(", ")}
-                    </span>
-                  ) : (
-                    <span className="text-xs uppercase text-gray-400">UNCATEGORIZED</span>
-                  )}
-                </div>
-
-                <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
-                  {post.title}
-                </h3>
-
-                <p className="text-xs text-gray-500">
-                  {post.published_at
-                    ? new Date(post.published_at).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      }).toUpperCase()
-                    : "N/A"}
-                </p>
-              </Link>
-            ))}
+        {/* Popular Posts Section */}
+        <section className="container mx-auto px-4 py-8">
+          <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
+            <h2 className="text-xl font-bold uppercase">POPULAR POSTS</h2>
           </div>
-        )}
-      </section>
-    </div>
+
+          {popularPosts.length === 0 ? (
+            <p className="text-gray-500 text-sm">Belum ada postingan popular.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {popularPosts.map((post: Post) => (
+                <Link
+                  key={post.id}
+                  href={`/post/${post.slug}`}
+                  className="block group"
+                >
+                  <div
+                    className="relative w-full rounded-lg overflow-hidden mb-3"
+                    style={{ aspectRatio: "623 / 416" }}
+                  >
+                    <Image
+                      src={post.thumbnail_url}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="623px"
+                    />
+                  </div>
+
+                  <div className="mb-2">
+                    {post.categories && post.categories.length > 0 ? (
+                      <span className="text-xs font-bold uppercase text-gray-400">
+                        {post.categories.map((c) => c.name).join(", ")}
+                      </span>
+                    ) : (
+                      <span className="text-xs uppercase text-gray-400">UNCATEGORIZED</span>
+                    )}
+                  </div>
+
+                  <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
+                    {post.title}
+                  </h3>
+
+                  <p className="text-xs text-gray-500">
+                    {post.published_at
+                      ? new Date(post.published_at).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        }).toUpperCase()
+                      : "N/A"}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          )}
+        </section>
+      </div>
+    </LoadingScreen>
   );
 }
