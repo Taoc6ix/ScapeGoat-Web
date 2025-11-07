@@ -65,15 +65,16 @@ export default async function Home() {
       <div className="min-h-screen bg-black text-white">
         {/* Hero Section */}
         {featuredPosts.length > 0 && (
-          <section className="container mx-auto px-4 py-8">
+          <section className="relative w-full h-screen">
             <HeroSlider posts={featuredPosts} />
           </section>
         )}
 
+
         {/* Latest Posts Section */}
         <section className="container mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
-            <h2 className="text-xl font-bold uppercase">LATEST POSTS</h2>
+          <div className="flex items-center justify-between mb-2 pb-2">
+            <h2 className="text-2xl font-extrabold uppercase">LATEST POSTS</h2>
             <h3><Link href="/latest" className="text-sm hover:text-gray-400 transition-colors">
               SEE MORE →
             </Link></h3>
@@ -104,27 +105,29 @@ export default async function Home() {
                       sizes="623px"
                     />
                   </div>
-                  <div className="mb-2">
-                    {post.categories && post.categories.length > 0 ? (
-                      <span className="text-sm font-bold uppercase text-gray-400">
-                        {post.categories.map((c) => c.name).join(', ')}
-                      </span>
-                    ) : (
-                      <span className="text-s uppercase text-gray-400">UNCATEGORIZED</span>
-                    )}
-                  </div>
+                  <h3>
+                    <div className="mb-2">
+                      {post.categories && post.categories.length > 0 ? (
+                        <span className="text-sm font-bold uppercase text-gray-400">
+                          {post.categories.map((c) => c.name).join(', ')}
+                        </span>
+                      ) : (
+                        <span className="text-s uppercase text-gray-400">UNCATEGORIZED</span>
+                      )}
+                    </div>
+                  </h3>
                   <h3 className="text-lg font-extrabold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-sm font-bold text-gray-500">
-                    {post.published_at 
-                      ? new Date(post.published_at).toLocaleDateString('en-US', { 
-                          month: 'short', 
-                          day: 'numeric', 
-                          year: 'numeric' 
+                  <h3 className="text-xs font-semibold text-gray-500">
+                    {post.published_at
+                      ? new Date(post.published_at).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
                         }).toUpperCase()
-                      : 'N/A'}
-                  </p>
+                      : "N/A"}
+                  </h3>
                 </Link>
               ))}
             </div>
@@ -133,8 +136,8 @@ export default async function Home() {
 
         {/* Popular Posts Section */}
         <section className="container mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-4">
-            <h2 className="text-xl font-bold uppercase">POPULAR POSTS</h2>
+          <div className="flex items-center justify-between mb-2 pb-2">
+            <h2 className="text-2xl font-extrabold uppercase">POPULAR POSTS</h2>
             <h3><Link href="/popular" className="text-sm hover:text-gray-400 transition-colors">
               SEE MORE →
             </Link>
@@ -165,21 +168,23 @@ export default async function Home() {
                     />
                   </div>
 
-                  <div className="mb-2">
-                    {post.categories && post.categories.length > 0 ? (
-                      <span className="text-xs font-bold uppercase text-gray-400">
-                        {post.categories.map((c) => c.name).join(", ")}
-                      </span>
-                    ) : (
-                      <span className="text-xs uppercase text-gray-400">UNCATEGORIZED</span>
-                    )}
-                  </div>
+                  <h3>
+                    <div className="mb-2">
+                      {post.categories && post.categories.length > 0 ? (
+                        <span className="text-sm font-bold uppercase text-gray-400">
+                          {post.categories.map((c) => c.name).join(', ')}
+                        </span>
+                      ) : (
+                        <span className="text-s uppercase text-gray-400">UNCATEGORIZED</span>
+                      )}
+                    </div>
+                  </h3>
 
                   <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-gray-400 transition-colors">
                     {post.title}
                   </h3>
 
-                  <p className="text-xs text-gray-500">
+                  <h3 className="text-xs font-semibold text-gray-500">
                     {post.published_at
                       ? new Date(post.published_at).toLocaleDateString("en-US", {
                           month: "short",
@@ -187,7 +192,7 @@ export default async function Home() {
                           year: "numeric",
                         }).toUpperCase()
                       : "N/A"}
-                  </p>
+                  </h3>
                 </Link>
               ))}
             </div>

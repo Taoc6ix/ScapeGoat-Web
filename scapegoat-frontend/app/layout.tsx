@@ -23,8 +23,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="bg-black text-white">
-      <body className={`${lora.variable} ${montserrat.variable} antialiased`}>
+    <html lang="en" className={`${lora.variable} ${montserrat.variable}`}>
+      <body className="antialiased">
         <Header />
         {children}
         <Footer />

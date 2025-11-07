@@ -130,7 +130,7 @@ export default async function PopularPostsPage({
       <div className="min-h-screen bg-black text-white">
         {/* Header */}
         <section className="container mx-auto px-4 py-12">
-          <h1 className="text-3xl md:text-4xl font-bold uppercase text-center">
+          <h1 className="text-lg md:text-2xl font-bold uppercase text-center">
             POPULAR POSTS
           </h1>
         </section>
