@@ -129,7 +129,7 @@ export default async function PopularPostsPage({
     <LoadingScreen>
       <div className="min-h-screen bg-black text-white">
         {/* Header */}
-        <section className="container mx-auto px-4 py-12">
+        <section className="container mx-auto px-4 mt-20 py-6">
           <h1 className="text-lg md:text-2xl font-bold uppercase text-center">
             POPULAR POSTS
           </h1>
@@ -186,56 +186,54 @@ export default async function PopularPostsPage({
               </div>
 
               {/* Pagination */}
-              {pagination.last_page > 1 && (
-                <div className="flex justify-center items-center gap-2 mt-12 mb-8">
-                  {/* Previous Button */}
-                  {pagination.current_page > 1 && (
-                    <Link
-                      href={`/popular?page=${pagination.current_page - 1}`}
-                      className="px-4 py-2 text-sm font-semibold text-white hover:text-gray-400 transition-colors"
-                    >
-                      PREVIOUS
-                    </Link>
-                  )}
+              <div className="flex justify-center items-center gap-2 mt-12 mb-8">
+                {/* Previous Button */}
+                {pagination.current_page > 1 && (
+                  <Link
+                    href={`/latest?page=${pagination.current_page - 1}`}
+                    className="px-4 py-2 text-sm font-semibold text-white hover:text-gray-400 transition-colors"
+                  >
+                    PREVIOUS
+                  </Link>
+                )}
 
-                  {/* Page Numbers */}
-                  {pageNumbers.map((pageNum, idx) => {
-                    if (pageNum === '...') {
-                      return (
-                        <span key={`ellipsis-${idx}`} className="px-3 py-2 text-gray-500">
-                          ...
-                        </span>
-                      );
-                    }
-
-                    const isActive = pageNum === pagination.current_page;
-                    
+                {/* Page Numbers */}
+                {pageNumbers.map((pageNum, idx) => {
+                  if (pageNum === '...') {
                     return (
-                      <Link
-                        key={pageNum}
-                        href={`/popular?page=${pageNum}`}
-                        className={`px-4 py-2 text-sm font-semibold transition-colors ${
-                          isActive 
-                            ? 'text-white border-b-2 border-white' 
-                            : 'text-gray-500 hover:text-gray-300'
-                        }`}
-                      >
-                        {pageNum}
-                      </Link>
+                      <span key={`ellipsis-${idx}`} className="px-3 py-2 text-gray-500">
+                        ...
+                      </span>
                     );
-                  })}
+                  }
 
-                  {/* Next Button */}
-                  {pagination.current_page < pagination.last_page && (
+                  const isActive = pageNum === pagination.current_page;
+                  
+                  return (
                     <Link
-                      href={`/popular?page=${pagination.current_page + 1}`}
-                      className="px-4 py-2 text-sm font-semibold text-white hover:text-gray-400 transition-colors"
+                      key={pageNum}
+                      href={`/latest?page=${pageNum}`}
+                      className={`px-4 py-2 text-sm font-semibold transition-colors ${
+                        isActive 
+                          ? 'text-white border-b-2 border-white' 
+                          : 'text-gray-500 hover:text-gray-300'
+                      }`}
                     >
-                      NEXT
+                      {pageNum}
                     </Link>
-                  )}
-                </div>
-              )}
+                  );
+                })}
+
+                {/* Next Button */}
+                {pagination.current_page < pagination.last_page && (
+                  <Link
+                    href={`/latest?page=${pagination.current_page + 1}`}
+                    className="px-4 py-2 text-sm font-semibold text-white hover:text-gray-400 transition-colors"
+                  >
+                    NEXT
+                  </Link>
+                )}
+              </div>
             </>
           )}
         </section>

@@ -107,7 +107,7 @@ export default async function LatestPostsPage({
     <LoadingScreen>
       <div className="min-h-screen bg-black text-white">
         {/* Header */}
-        <section className="container mx-auto px-4 py-12">
+        <section className="container mx-auto px-4 mt-20 py-6">
           <h1 className="text-lg md:text-2xl font-bold uppercase text-center">
             LATEST POSTS
           </h1>
